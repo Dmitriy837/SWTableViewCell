@@ -101,11 +101,12 @@
                                                                          metrics:nil
                                                                            views:NSDictionaryOfVariableBindings(button)]];
             
-            
-            SWUtilityButtonTapGestureRecognizer *utilityButtonTapGestureRecognizer = [[SWUtilityButtonTapGestureRecognizer alloc] initWithTarget:_parentCell action:_utilityButtonSelector];
-            utilityButtonTapGestureRecognizer.buttonIndex = utilityButtonsCounter;
-            [button addGestureRecognizer:utilityButtonTapGestureRecognizer];
-            
+            if (![button valueForKey:@"rac_command"])
+            {
+                SWUtilityButtonTapGestureRecognizer *utilityButtonTapGestureRecognizer = [[SWUtilityButtonTapGestureRecognizer alloc] initWithTarget:_parentCell action:_utilityButtonSelector];
+                utilityButtonTapGestureRecognizer.buttonIndex = utilityButtonsCounter;
+                [button addGestureRecognizer:utilityButtonTapGestureRecognizer];
+            }
             utilityButtonsCounter++;
             precedingView = button;
         }
